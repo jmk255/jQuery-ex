@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>선택자</title>
+  <!--css내부정의-->
+  <style>
+    *{margin:0; padding:0;}
+    body{font-size:30px;}
+    div{
+      border:1px solid green;
+      margin:5px;
+    }
+    li{
+      border:1px solid blue;
+      list-style:none;
+      margin:5px;
+    }
+  </style>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <script>
+    $(function(){//document.ready
+      //아이디가 first인 객체의 자손인 li요소중 첫번째 자손을 선택
+      $("#first > li:first").css("background","pink")
+      //아이디가 first인 객체의 자손인 li요소중 마지막 자손을 선택
+      $("#first > li:last").css("background","pink")
+      
+      //even = 짝수, odd = 홀수
+      $("#second > li:even").css("color","red")
+      $("#second > li:odd").css("color","blue")
+
+      //:eq(요소순번) = 해당순번의 요소를 선택
+      $("#el > li:eq(0)").css("color", "hotpink")
+
+      //:gt(순번) = 해당순번보다 큰 요소를 모두 선택
+      $("#el > li:gt(6)").css("color","brown")
+      
+      //:lt(순번) = 해당순번보다 작은 요소를 모두 선택
+      $("#el > li:lt(3)").css("color","brown")
+
+      //:not(선택자) = 해당 선택자를 제외한 모든 요소를 선택
+      $("#second > li:not(.not)").css("color","pink")
+
+      //:has(선택자) = 해당 선택자요소를 포함하고 있는 요소를 선택
+      $("li:has(div)").css("color","puple")
+
+      function upDown(){
+        //다운메뉴
+        $(".toggle").slideToggle(2000, upDown)
+      }
+      upDown();
+
+      //움직이는 요소를 선택
+      $(":animated").css("border","4px solid darkred")
+      
+    });
+  </script>
+
+</head>
+<body>
+  <div>
+    <ul id="el">
+      <li>1</li>
+      <li class="tag">2</li>
+      <li><p>3</p></li>
+      <li class="not">4</li>
+      <li class="toggle">5
+        <ul id="first">
+          <li id="siblings">5-1</li>
+          <li>5-2</li>
+          <li title="list">5-3</li>
+          <li>5-4</li>
+          <li>5-5</li>
+        </ul>
+      </li>
+      <li>6
+        <ul id="second">
+          <li class="not">6-1</li>
+          <li>6-2</li>
+          <li>6-3</li>
+          <li>6-4</li>
+          <li>6-5</li>
+        </ul>
+      </li>
+      <li><div>7</div></li>
+      <li>8</li>
+      <li>9</li>
+    </ul>
+  </div>
+</body>
+</html>

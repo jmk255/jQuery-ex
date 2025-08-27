@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>확장집합을관리하는메서드</title>
+  <!--css내부정의-->
+  <style>
+    *{margin:0; padding:0;}
+    body{font-size:30px;}
+    div{
+      border:1px solid green;
+      margin:5px;
+    }
+    li{
+      border:1px solid blue;
+      list-style:none;
+      margin:5px;
+    }
+  </style>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <script>
+    $(function(){//document.ready
+      $("#wrap > ul > li").eq(1).css("color", "red")
+    });
+  </script>
+
+</head>
+<body>
+  <div id="wrap">
+    <ul>
+      <li class="el">1</li>
+      <li>2</li>
+      <li id="el">3</li>
+      <li>4
+        <ul>
+          <li>4-1</li>
+          <li>4-2</li>
+          <li>4-3</li>
+          <li>4-4</li>
+        </ul>
+      </li>
+      <li>5</li>
+      <li>6</li>
+    </ul>
+  </div>
+</body>
+</html>

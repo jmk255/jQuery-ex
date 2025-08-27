@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>위치관계를통해선택</title>
+  <!--css내부정의-->
+  <style>
+    *{margin:0; padding:0;}
+    body{font-size:30px;}
+    div{
+      border:1px solid green;
+      margin:5px;
+    }
+    li{
+      border:1px solid blue;
+      list-style:none;
+      margin:5px;
+    }
+  </style>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <script>
+    $(function(){//document.ready
+      
+    });
+  </script>
+
+</head>
+<body>
+  <div id="wrap">
+    <ul>
+      <li class="first">1</li>
+      <li>2</li>
+      <li>3
+        <ul>
+          <li>3-1</li>
+          <li>3-2</li>
+          <li class="parent">3-3
+            <ul>
+              <li>3-3-1</li>
+              <li>3-3-2</li>
+              <li class="child">3-3-3</li>
+              <li class="end">3-3-4</li>
+              <li>3-3-5</li>
+            </ul>
+          </li>
+          <li>3-4</li>
+        </ul>
+      </li>
+      <li>4
+        <ul>
+          <li>4-1</li>
+          <li>4-2</li>
+          <li class="parentEl">4-3
+            <ul>
+              <li>4-3-1</li>
+              <li>4-3-2</li>
+              <li class="childEl">4-3-3</li>
+              <li>4-3-4</li>
+              <li>4-3-5</li>
+            </ul>
+          </li>
+          <li class="findEl">4-4</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+</body>
+</html>
