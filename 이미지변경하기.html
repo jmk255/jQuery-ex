@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이미지 갤러리</title>
+  
+  <style>
+    *{margin:0; padding:0;}
+    body{padding:10px; margin-top:50px;}
+
+    #wrapper{
+      width:522px;
+      margin:auto;
+    }
+
+    #nav > ul{
+      list-style:none;
+      width:100%;
+      display:flex;
+      justify-content: space-between;
+    }
+    #nav > ul img{display:block;}
+
+    #largeImg{
+      width:522px;
+      height:400px;
+      margin-top:10px;
+    }
+  </style>
+
+  <!--제이쿼리 CDN(웹상에 있는 외부파일을 링크)-->
+  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+
+  <script>
+    $(function(){
+      //봄버튼에 클릭 이벤트를 생성
+      //bind(이벤트, 실행함수)
+      $("#springBtn").bind("click",function(){
+        //largeImg를 선택해서 src속성과 alt속성값을 설정
+        $("#largeImg img").attr({"src":"img/spring.jpg","alt":"봄"})
+      })
+
+      //여름 버튼에 클릭이벤트 생성
+      $("#summerBtn").bind("click",function(){
+        //largeImg를 선택해서 src속성과 alt속성값을 설정
+        $("#largeImg img").attr({"src":"img/summer.jpg","alt":"여름"})
+      })
+      //가을 버튼에 클릭이벤트 생성
+      $("#fallBtn").bind("click",function(){
+        //largeImg를 선택해서 src속성과 alt속성값을 설정
+        $("#largeImg img").attr({"src":"img/fall.jpg","alt":"가을"})
+      })
+      //겨울 버튼에 클릭이벤트 생성
+      $("#winterBtn").bind("click",function(){
+        //largeImg를 선택해서 src속성과 alt속성값을 설정
+        $("#largeImg img").attr({"src":"img/winter.jpg","alt":"겨울"})
+      })
+    })
+  </script>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="nav">
+      <ul>
+        <li id="springBtn">
+          <a href="#"><img src="img/btn1_2.jpg"></a>
+        </li>
+        <li id="summerBtn">
+          <a href="#"><img src="img/btn2_2.jpg"></a>
+        </li>
+        <li id="fallBtn">
+          <a href="#"><img src="img/btn3_2.jpg"></a>
+        </li>
+        <li id="winterBtn">
+          <a href="#"><img src="img/btn4_2.jpg"></a>
+        </li>
+      </ul>
+    </div>
+    <div id="largeImg">
+      <img src="img/spring.jpg" alt="봄">
+    </div>
+  </div>
+</body>
+</html>
