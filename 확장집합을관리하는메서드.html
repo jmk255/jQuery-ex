@@ -22,7 +22,12 @@
 
   <script>
     $(function(){//document.ready
-      $("#wrap > ul > li").eq(1).css("color", "red")
+      $('#wrap > ul > li').eq(1).css('color', 'red');
+      $('#wrap > ul > li').first().css('color', 'red');
+      $('#wrap > ul > li').last().css('color', 'red');
+      $('#wrap > ul > li').not('#el').css('color', 'red');
+      $('#wrap > ul > li').has('ul').css('color', 'pink');
+      $('#wrap li').filter('.el').css('color', 'blue');
     });
   </script>
 
