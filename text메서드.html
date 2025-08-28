@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>text메서드</title>
+  <!--제이쿼리 CDN(웹상에 있는 외부파일을 링크)-->
+  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+
+  <script>
+    $(function(){
+      //.text()메서드  = 요소의 텍스트를 취득, 생성, 변경할 수 있는 메서드
+
+      //텍스트를 읽어오기
+      console.log($("#m1").text())
+
+      //텍스트 변경하기
+      $("#m1").text("responsive web")
+
+      //콜백함수를 이용하여 선택된 요소들을 일괄적으로 처리할 수 있다.
+      $("#m2 > div").text(function(index, text){
+        return "div 요소의 텍스트는 " + text + ", index는 " + index;
+      })
+    })
+  </script>
+</head>
+<body>
+  <div id="m1">jQuery</div>
+  <div id="m2">
+    <div>html</div>
+    <div>css</div>
+    <div>javascript</div>
+  </div>
+</body>
+</html>

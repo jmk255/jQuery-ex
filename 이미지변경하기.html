@@ -20,7 +20,10 @@
       display:flex;
       justify-content: space-between;
     }
-    #nav > ul img{display:block;}
+    /*모든 버튼이미지를 제거합니다*/
+    #nav > ul img { display:none; }
+    /*버튼 이미지에 on클래스가 추가되면 화면에 표시*/
+    #nav > ul img.on{display:block;}
 
     #largeImg{
       width:522px;
@@ -39,22 +42,58 @@
       $("#springBtn").bind("click",function(){
         //largeImg를 선택해서 src속성과 alt속성값을 설정
         $("#largeImg img").attr({"src":"img/spring.jpg","alt":"봄"})
+
+        //모든 버튼요소의 첫번째 이미지에 on클래스를 추가하고 두번째 이미지에 on클래스를 제거
+        $("#nav ul li a").each(function(){
+          $(this).children("img:first").addClass("on");
+          $(this).children("img:last").removeClass("on");
+        })
+
+        //첫번째 버튼이미지에 on클래스를 제거하고 두번째 버튼이미지에 on클래스를 추가
+        $("#springBtn img:first").removeClass("on");
+        $("#springBtn img:last").addClass("on");
       })
 
       //여름 버튼에 클릭이벤트 생성
       $("#summerBtn").bind("click",function(){
         //largeImg를 선택해서 src속성과 alt속성값을 설정
         $("#largeImg img").attr({"src":"img/summer.jpg","alt":"여름"})
+
+        //모든 버튼요소의 첫번째 이미지에 on클래스를 추가하고 두번째 이미지에 on클래스를 제거
+        $("#nav ul li a").each(function(){
+          $(this).children("img:first").addClass("on");
+          $(this).children("img:last").removeClass("on");
+        })
+
+        //첫번째 버튼이미지에 on클래스를 제거하고 두번째 버튼이미지에 on클래스를 추가
+        $("#summerBtn img:first").removeClass("on");
+        $("#summerBtn img:last").addClass("on");
       })
       //가을 버튼에 클릭이벤트 생성
       $("#fallBtn").bind("click",function(){
         //largeImg를 선택해서 src속성과 alt속성값을 설정
         $("#largeImg img").attr({"src":"img/fall.jpg","alt":"가을"})
+        //모든 버튼요소의 첫번째 이미지에 on클래스를 추가하고 두번째 이미지에 on클래스를 제거
+        $("#nav ul li a").each(function(){
+          $(this).children("img:first").addClass("on");
+          $(this).children("img:last").removeClass("on");
+        })
+        //첫번째 버튼이미지에 on클래스를 제거하고 두번째 버튼이미지에 on클래스를 추가
+        $("#fallBtn img:first").removeClass("on");
+        $("#fallBtn img:last").addClass("on");
       })
       //겨울 버튼에 클릭이벤트 생성
       $("#winterBtn").bind("click",function(){
         //largeImg를 선택해서 src속성과 alt속성값을 설정
         $("#largeImg img").attr({"src":"img/winter.jpg","alt":"겨울"})
+        //모든 버튼요소의 첫번째 이미지에 on클래스를 추가하고 두번째 이미지에 on클래스를 제거
+        $("#nav ul li a").each(function(){
+          $(this).children("img:first").addClass("on");
+          $(this).children("img:last").removeClass("on");
+        })
+        //첫번째 버튼이미지에 on클래스를 제거하고 두번째 버튼이미지에 on클래스를 추가
+        $("#winterBtn img:first").removeClass("on");
+        $("#winterBtn img:last").addClass("on");
       })
     })
   </script>
@@ -64,16 +103,28 @@
     <div id="nav">
       <ul>
         <li id="springBtn">
-          <a href="#"><img src="img/btn1_2.jpg"></a>
+          <a href="#">
+            <img src="img/btn1_1.jpg">
+            <img class="on" src="img/btn1_2.jpg">
+          </a>
         </li>
         <li id="summerBtn">
-          <a href="#"><img src="img/btn2_2.jpg"></a>
+          <a href="#">
+            <img class="on" src="img/btn2_1.jpg">
+            <img src="img/btn2_2.jpg">
+          </a>
         </li>
         <li id="fallBtn">
-          <a href="#"><img src="img/btn3_2.jpg"></a>
+          <a href="#">
+            <img class="on" src="img/btn3_1.jpg">
+            <img src="img/btn3_2.jpg">
+          </a>
         </li>
         <li id="winterBtn">
-          <a href="#"><img src="img/btn4_2.jpg"></a>
+          <a href="#">
+            <img class="on" src="img/btn4_1.jpg">
+            <img src="img/btn4_2.jpg">
+          </a>
         </li>
       </ul>
     </div>
