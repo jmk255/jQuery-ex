@@ -26,7 +26,7 @@
       min-width:1080px;
       height:100%;
       min-height:600px;
-      background:url(images/main.jpg) center/cover;/*배경이미지는 요소전체에 채워지도록 설정하고 가운데 정렬*/
+      background:url(images/main1.jpg) center/cover;/*배경이미지는 요소전체에 채워지도록 설정하고 가운데 정렬*/
       color:#fff;
       position:relative;/*pos:abs를 적용한 자식요소의 기준이 됨*/
     }
@@ -114,6 +114,11 @@
         $(".dot > li").removeClass("active");
         // 클릭한 닷 버튼에 active클래스를 추가
         $(this).addClass("active");
+        //클릭한 버튼의 순번에 1을 더해서 변수에 할당
+        let idx = $(this).index() + 1;
+        console.log(idx)
+        //idx값을 활용하여 header의 배경 이미지를 변경
+        $("header").css("background-image",`url(images/main${idx}.jpg)`)
       })
     })
   </script>
