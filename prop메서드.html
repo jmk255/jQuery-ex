@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>prop메서드</title>
+  <!--제이쿼리 CDN(웹상에 있는 외부파일을 링크)-->
+  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+  <script>
+    $(function(){//document.ready
+      console.log($("input:checkbox").eq(0).attr("checked")) //값이 없으므로 undefined가 출력
+      console.log($("input:checkbox").eq(0).prop("checked")) //속성이 있으면 true 없으면 false를 반환
+
+      console.log($("input:checkbox").eq(1).prop("checked"))
+    })
+  </script>
+</head>
+<body>
+  <input type="checkbox" id="html">
+  <label for="html">html</label>
+
+  <input type="checkbox" id="css" checked>
+  <label for="css">css</label>
+</body>
+</html>

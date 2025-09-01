@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>크기를 읽고 설정하는 메서드</title>
+  <style>
+    *{margin:0; padding:0;}
+    body>span{
+      color:red;
+      font-size:28px;
+    }
+    #wrapper{
+      border:5px solid blue;
+      padding:30px;
+      margin:20px;
+      font-size:20px;
+      height:50vh;
+    }
+  </style>
+  <!--제이쿼리 CDN(웹상에 있는 외부파일을 링크)-->
+  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+  <script>
+    $(function(){
+      //브라우저의 크기가 변경됬을때 실행
+      $(window).resize(function(){
+        //#width,#height인 요소의 텍스트를  #wrapper의 넓이와 높이 값으로 변경합니다(content 넓이와 높이,padding과 margin은 포함되지 않음)
+        $("#width").text($("#wrapper").width())
+        $("#height").text($("#wrapper").height())
+        
+        //padding을 포함한 가로 세로 크기
+        $("#innerWidth").text($("#wrapper").innerWidth())
+        $("#innerHeight").text($("#wrapper").innerHeight())
+        
+        //margin을 포함한 가로 세로 크기
+        $("#outerWidth").text($("#wrapper").outerWidth(true))
+        $("#outerHeight").text($("#wrapper").outerHeight(true))
+
+      })
+
+      $(window).trigger("resize")//처음 문서를 불러올 때 window의 resize이벤트를 강제로 발생시킨다
+    })
+  </script>
+</head>
+<body>
+  <span>브라우저 창의 크기를 변경해 보고 박스의 크기가 각 메서드에 따라 어떻게 다른지 확인해 보세요</span>
+  <div id="wrapper">
+    <span>박스의 width = </span><span id="width">0</span><br>
+    <span>박스의 height = </span><span id="height">0</span><br>
+    <span>박스의 innerWidth = </span><span id="innerWidth">0</span><br>
+    <span>박스의 innerHeight = </span><span id="innerHeight">0</span><br>
+    <span>박스의 outerWidth = </span><span id="outerWidth">0</span><br>
+    <span>박스의 outerHeight = </span><span id="outerHeight">0</span>
+  </div>
+</body>
+</html>
