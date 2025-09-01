@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>스크롤위치</title>
+  <style>
+    *{margin:0; padding:0;}
+    #wrapper{
+      width:2000px;
+      height:2000px;
+      padding:30px;
+    }
+    #info{
+      position:fixed;
+    }
+    #form{margin-top:20px;}
+  </style>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    $(function(){
+      //스크롤 이벤트 발생시 실행
+      $(window).scroll(function(){
+        let sl = $(window).scrollLeft(); //가로 스크롤 이동값을 변수에 할당
+        let st = $(window).scrollTop(); //세로 스크롤 이동값을 변수에 할당
+        //console.log(sl, st)
+        //#info의 자식요소중 .scrollLeft선택 텍스트로 sl변수값을 적용
+        $("#info").children(".scrollLeft").text(sl)
+        //#info의 자식요소중 .scrollTop선택 텍스트로 st변수값을 적용
+        $("#info").children(".scrollTop").text(st)
+      })
+
+      //버튼에 클릭이벤트 생성
+      $(".btn").click(function(){
+        //x축 스크롤 이동값을 .xField의 입력값으로 적용
+        $(window).scrollLeft($(".xField").val())
+        //y축 스크롤 이동값을 .yField의 입력값으로 적용
+        $(window).scrollTop($(".yField").val())
+      })
+    })
+  </script>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="info">
+      <span>scrollLeft = </span><span class="scrollLeft">0</span><br>
+      <span>scrolltop = </span><span class="scrollTop">0</span>
+      <div id="form">
+        <span>이동시킬 스크롤의 위치값을 입력해주세요</span><br>
+        <input type="text" class="xField">
+        <input type="text" class="yField">
+        <input type="button" class="btn" value="입력">
+      </div>
+    </div>
+  </div>
+</body>
+</html>
