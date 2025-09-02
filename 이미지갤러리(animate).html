@@ -61,25 +61,45 @@
         //.imgs요소가 애니메이션 효과가 적용중이면 return false로 함수를 종료
         if($(".imgs").is(":animated")) return false;
         
-        //첫번째 이미지 요소
-        const first = $(".imgs > li").first();
-        //.imgs를 왼쪽으로 600px만큼 0.5초 동안 이동
-        $(".imgs").animate({"left":"-600px"},500,function(){ //애니메이션이 종료된 후 실행되는 코드
-          //여기서 this = .imgs
-          //첫번째 이미지 요소를 마지막 위치로 이동시키고 .imgs의 left값을 초기화
-          $(this).append(first).css("left","0px");
-        })
+        //slideImg함수 호출
+        slideImg();
       })
 
       //이전 버튼에 클릭이벤트 생성
       $(".prev").click(function(){
         //.imgs요소가 애니메이션 효과가 적용중이면 return false로 함수를 종료
         if($(".imgs").is(":animated")) return false;
-        
+
         //마지막 이미지 요소를 변수에 할당
         let last = $(".imgs > li").last();
         //마지막 이미지를 첫번째 위치로 이동시키고 .imgs의 left값을 -600px로 변경 이후에 animate메서드로 left를 0으로 애니메이션 시켜줍니다
         $(".imgs").prepend(last).css("left","-600px").animate({"left":"0px"},500)
+      })
+
+      //자동 슬라이드 기능
+      function slideImg(){
+        //console.log("함수호출")
+        //첫번째 이미지 요소
+        const first = $(".imgs > li").first();
+        //.imgs를 왼쪽으로 600px만큼 0.5초 동안 이동
+        $(".imgs").animate({"left":"-600px"},500,function(){//애니메이션이 종료된 후 실행되는 코드
+          //여기서 this = .imgs
+          //첫번째 이미지 요소를 마지막 위치로 이동시키고 .imgs의 left값을 초기화
+          $(this).append(first).css("left","0px");
+        })
+      }
+
+      //3초에 한번씩 slideImg함수를 반복 호출
+      let timer = setInterval(slideImg, 3000);
+
+      //선택자.hover(mouseover시 실행될 함수, mouseout시 실행될 함수)
+      //.prev와 .next에 hover이벤트 생성
+      $(".prev, .next").hover(function(){
+        //mouseover시 실행될 코드
+        clearInterval(timer)//timer변수에 할당한 setInterval함수를 종료시킴
+      },function(){
+        //mouseout시 실행될 코드
+        timer = setInterval(slideImg, 3000); //timer변수에 setInterval함수를 다시 할당하여 자동슬라이드를 다시 구현합니다
       })
     })
   </script>
