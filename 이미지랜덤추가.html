@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이미지랜덤추가</title>
+  <style>
+    div{border:1px solid #00f;}
+  </style>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <script>
+    $(function(){
+      //append버튼에 클릭이벤트 생성
+      $("#append").click(function(){
+        //#container의 내부에 이미지 요소를 추가하는데 이때 내용을 fetchImg함수에서 만들어서 전달해줍니다
+        $("#container").append(fetchImg());
+      })
+      //fetchImg함수 생성(랜덤으로 이미지요소를 생성하는 함수)
+      function fetchImg(){
+        //Math.ceil() : 올림함수
+        //Math.random() : 0~1사이의 랜덤한 숫자를 생성
+        let n = Math.ceil(Math.random()*3) //1~3사이의 숫자를 랜덤으로 생성
+
+        //변수 n값을 활용하여 이미지태그 생성
+        let imgPath = `<img src="img/th${n}.jpg" alt="이미지${n}" width="100" height="100">`;
+
+        return imgPath; //이미지 태그 문자열을 함수 호출한 곳으로 리턴합니다
+      }
+    })
+  </script>
+</head>
+<body>
+  <div id="container"></div>
+  <button id="append">append</button>
+</body>
+</html>

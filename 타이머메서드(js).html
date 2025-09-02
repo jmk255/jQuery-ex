@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>타이머메서드</title>
+  <script>
+    //setTimeout(실행함수, 대기시간): 대기 시간이 지난 후 지정된 함수가 한 번만 호출됩니다.
+    var timerId = setTimeout(function(){
+      alert("3초 뒤에 호출됩니다")
+    }, 3000);//경고창을 3초(3000millisecond) 후에 1회만 실행합니다.
+
+    clearTimeout(timerId);//setTimeout함수가 호출되지 않도록 제거합니다
+
+
+    //setInterval(실행함수, 대기시간) : 일종의 타이머와 같이 지정된 시간마다 함수를 반복 호출하는 메서드
+    var count = 1;//반복함수가 실행되는 횟수를 저장할 변수 
+
+    //gallery함수를 1초마다 실행
+    var clearId = setInterval(gallery, 1000)
+
+    //gallery함수 생성
+    function gallery(){
+      console.log("다음 사진")
+      //count값이 10이 되면 clearInterval로 setInterval함수를 종료 시킴
+      if(count === 10) clearInterval(clearId)
+      //count변수값을 1증가시킴
+      count++;
+    }
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

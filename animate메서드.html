@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>animate메서드</title> 
+  <style>
+    div{
+      overflow:hidden;
+      width:300px;
+      height:300px;
+      margin-bottom:20px;
+    }
+  </style>
+
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <script>
+    $(function(){
+      /*
+      animate(properties, duration, easing, complete)
+      properties : 움직임을 만들어낼 수 있는 css속성들
+      duration : 애니메이션 되는 시간
+      easing : 가, 감속을 조절
+      complete : 애니메이션이 모두 종료된 후에 실행될 콜백 함수
+
+      ※animate함수는 display 상태를 변경하지 않는다
+      */
+
+      //up버튼에 클릭 이벤트를 생성
+      $("#up").click(function(){
+        //div요소의 width를 1초동안 0으로 변경(단위 밀리세컨드, 1000 = 1초)
+        $("div").stop().animate({"width":"0px"},1000)
+        //.stop() = 대기열에 있는 애니메이션 기능을 모두 제거
+      });
+
+      //down버튼에 클릭 이벤트를 생성
+      $("#down").click(function(){
+        //div요소의 width를 1초동안 300px로 변경
+        $("div").stop().animate({"width":"300px"},1000);
+      })
+
+    })
+  </script>
+</head>
+<body>
+  <div>
+    <img src="img/th1.jpg" width="300" height="300">
+  </div>
+  <button id="up">slide감추기</button>
+  <button id="down">slide보이기</button>
+</body>
+</html>

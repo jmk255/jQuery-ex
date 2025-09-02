@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이미지슬라이드</title> 
+  <style>
+    *{margin:0; padding:0;}
+    ul, li{list-style:none;}
+    #container{
+      width:600px;
+      height:400px;
+      border:2px solid #033;
+      margin:10px auto;
+      overflow:hidden;
+      position:relative;
+    }
+    .btn{
+      position:absolute;
+      right:0px;
+      bottom:0px;
+      display:flex;
+      color:#fff;
+      font-size:30px;
+      gap:20px;
+      background-color:rgba(0,0,0,0.5);
+      padding:0 10px;
+      cursor:pointer;
+    }
+    .btn > li:hover{
+      color:red;
+    }
+    
+  </style>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <script>
+    $(function(){
+      //이전 버튼에 클릭이벤트 생성
+      $(".prev").click(function(){
+        console.log(1)
+        //마지막 이미지요소를 last변수에 할당
+        let last = $(".imgs > li").last()
+        //마지막 이미지요소를 첫번째 위치로 이동시킴
+        $(".imgs").prepend(last);
+      })
+
+      //다음 버튼에 클릭이벤트 생성
+      $(".next").click(function(){
+        //첫번째 이미지 요소를 first변수에 할당
+        let first = $(".imgs > li").first();
+        //첫번째 이미지요소를 마지막 위치로 이동시킴
+        $(".imgs").append(first);
+      })
+    })
+  </script>
+</head>
+<body>
+  <div id="container">
+    <ul class="imgs">
+      <li><img src="img/img01.png" width="600" height="400"></li>
+      <li><img src="img/img02.png" width="600" height="400"></li>
+      <li><img src="img/img03.png" width="600" height="400"></li>
+      <li><img src="img/img04.png" width="600" height="400"></li>
+    </ul>
+    <ul class="btn">
+      <li class="prev">&lt;</li>
+      <li class="next">&gt;</li>
+    </ul>
+  </div>
+</body>
+</html>

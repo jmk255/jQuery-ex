@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM 변경</title>
+  <style>
+    *{margin:0; padding:0;}
+    li{
+      margin:5px; list-style: none;
+      border:1px solid green;
+      font-size:20px;
+    }
+    .newEl{color:red;}
+  </style>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <script>
+    $(function(){
+      //append활용 = 선택한 요소의 마지막 자손으로 추가
+      $("#list").append("<li class='newEl'>7</li>")
+
+      //prepend활용 = 선택한 요소의 첫번째 자손으로 추가
+      $("#list").prepend("<li class='newEl'>0</li>")
+      
+      //before활용 = 선택한 요소의 이전 형제로 추가
+      $("#list > li").eq(3).before("<li class='newEl'>4</li>")
+      
+      //after활용 = 선택한 요소의 다음 형제로 추가
+      $("#list > li").eq(2).after("<li class='newEl'>3</li>")
+
+    })
+  </script>
+</head>
+<body>
+  <div id="wrapper">
+    <ul id="list">
+      <li>1 (위에 0을 채워주세요)</li>
+      <li>2 (아래에 3을 추가시켜 주세요)</li>
+      <li>5 (위에 4를 추가시켜 주세요)</li>
+      <li>6 (아래에 7을 채워주세요)</li>
+    </ul>
+  </div>
+</body>
+</html>
