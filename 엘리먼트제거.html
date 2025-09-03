@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>엘리먼트제거</title>
+  <style>
+    *{margin:0; padding:0;}
+    body{font-size:30px;}
+    li{
+      border:1px solid blue;
+      list-style:none;
+      margin:5px;
+    }
+  </style>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    $(function(){
+      //선택자.remove([selector]) : 선택된 노드를 제거합니다
+      $("ul > li:eq(1)").remove(); //2번째 li요소를 제거
+
+      //.empty() : 선택된 객체의 자식(후손 포함) 노드를 삭제 합니다
+      $("ul > li:eq(2)").empty()
+
+      //.detach() : remove함수와 똑같은 일을 합니다.
+      //다른점은 detach() 메서드에 의해 제거된 노드들을 임시로 보관할 수 있다는 점이다
+      var temp = $("ul > li:last").detach();
+      console.log(temp)
+
+      //요소 복제
+      //.clone() : 선택한 요소를 복제합니다
+      const cloneEl = $("ul > li:first").clone();//첫번째 li요소를 복제하여 cloneEl에 할당
+      $("ul").append(cloneEl);//ul의 마지막 자손으로 복제한 li요소를 추가합니다
+    })
+  </script>
+</head>
+<body>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4
+      <ul>
+        <li>4-1</li>
+        <li>4-2</li>
+        <li>4-3</li>
+        <li>4-4</li>
+      </ul>
+    </li>
+    <li>5</li>
+  </ul>
+</body>
+</html>

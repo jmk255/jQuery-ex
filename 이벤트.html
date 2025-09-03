@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이벤트</title>
+  <style>
+    *{margin:0; padding:0;}
+    body{padding-left:50px;}
+    .box{
+      width:150px;
+      height:150px;
+      border:2px solid blue;
+      margin-bottom:10px;
+    }    
+    .box.over{background-color:red;}
+    .box.out{background-color:green;}
+    .box.click{background-color:brown;}
+    .box > p {
+      padding:30px;
+      color:#fff;
+    }
+    #nav{margin:20px;}
+  </style>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    $(function(){
+      //on(event, childSelector, data, function, map)
+      //event = 필수 항목, 요소에 첨부할 하나 이상의 이벤트를 지정
+      //data = 선택 항목, 함수에 전달할 추가 데이터를 지정
+      //function = 필수 항목, 이벤트가 발생할 때 실행할 기능을 지정
+      //childSelector = 선택 항목, 이벤트 핸들러가 지정된 자식요소에 연결(동적으로 생성된 요소에도 이벤트가 적용)
+      
+      //map = 요소에 첨부할 하나 이상의 이벤트를 포함하는 이벤트 맵
+
+      //box요소에 on메서드를 호출한 후 첫번째 인자값으로 이벤트 타입명을 넘기고 두번째 인자값으로 콜백함수를 넘겨 mouseover이벤트를 생성
+      $("#wrapper").on("mouseenter", '.box', function(){
+        //this를 통해 event를 발생한 요소에 접근할 수 있다.
+        $(this).removeClass().addClass("box over");//박스의 모든 클래스를 제거하고 box와 over클래스를 추가
+        $(this).children("p").text("mouseover");//box의 자식요소인 p요소의 글자를 mouseover로 변경
+      }) //두번째 인자값으로 selector를 넘겨 클래스가 box인 요소를 선택
+
+      //map형태로 여러 이벤트를 한번에 적용할 수 있다.
+      $("#wrapper").on({
+        mouseleave : function(){ //해당 요소에서 마우스가 떠났을때 실행
+          $(this).removeClass().addClass("box out")
+          $(this).children("p").text("mouseout")
+        },
+        click : function(){ //해당 요소를 클릭했을때 실행
+          $(this).removeClass().addClass("box click")
+          $(this).children("p").text("click")
+        }
+      }, '.box')
+
+      //이벤트제거
+      //off(event, selector, function(), map)
+      $(".btn2").click(function(){//btn2에 클릭이벤트 발생시
+        $(".box").off("mouseenter")
+        //이벤트 타입을 인자로 전달하지 않으면 모든 이벤트를 제거
+      })
+
+      //box요소 복제
+      $(".btn1").click(function(){
+        //첫번째 박스요소를 복제하여 #wrapper에 추가
+        $("#wrapper").append($(".box").first().clone())
+      })
+    })
+  </script>
+</head>
+<body>
+  <div id="nav">
+    <input class="btn1" type="button" value="box추가">
+    <input class="btn2" type="button" value="이벤트 제거">
+  </div>
+  <div id="wrapper">
+    <div class="box out">
+      <p>mouseout</p>
+    </div>
+    <div class="box out">
+      <p>mouseout</p>
+    </div>
+  </div>
+</body>
+</html>
