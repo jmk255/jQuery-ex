@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마우스 좌표</title>
+  <style>
+    * {	 margin:0;   padding:0; 	}
+    #wrapper{
+      width:3000px;
+      height:3000px;
+    }
+    #box{
+      width:350px;
+      height:350px;
+      border:2px solid blue;
+      margin:50px;
+      position:fixed;
+      padding:50px;
+    }
+  </style>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    $(function(){
+      $("#box").mousemove(function(e){ //콜백함수의 인자로 event객체를 넘겨야 마우스의 위치를 구할 수 있습니다.
+
+        //document에서 스크롤 이동값을 제외한 마우스의 x,y좌표 값
+        $("#clientx").text(e.clientX);
+        $("#clienty").text(e.clientY);
+        
+        //이벤트 발생시 이벤트의 대상으로 부터 마우스의 x,y 좌표값
+        $("#offsetx").text(e.offsetX);
+        $("#offsety").text(e.offsetY);
+        
+        //document에서 스크롤 이동값을 포함한 x,y좌표 값
+        $("#pagex").text(e.pageX);
+        $("#pagey").text(e.pageY);
+        
+        //모니터 화면을 기준으로 마우스의 x,y좌표 값
+        $("#screenx").text(e.screenX);
+        $("#screeny").text(e.screenY);
+
+      })
+    })
+  </script>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="box">
+      <p>
+        clientX = <span id="clientx">0</span><br>
+        clientY = <span id="clienty">0</span><br>
+        offsetX = <span id="offsetx">0</span><br>
+        offsetY = <span id="offsety">0</span><br>
+        pageX = <span id="pagex">0</span><br>
+        pageY = <span id="pagey">0</span><br>
+        screenX = <span id="screenx">0</span><br>
+        screenY = <span id="screeny">0</span><br>
+      </p>
+    </div>
+  </div>
+</body>
+</html>

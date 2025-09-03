@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이벤트모델</title>
+  <style>
+    *{margin:0; padding:0;}
+    #wrapper{
+      width:200px;
+      height:200px;
+      border:1px solid red;
+      background-color:gold;
+      padding:150px;
+    }
+    #targetBox{
+      width:200px;
+      height:200px;
+      background-color:red;
+    }
+  </style>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    $(function(){
+      $("#targetBox").click(function(event){
+        console.log(event)
+        event.stopPropagation();//자식 객체가 클릭되었을때 부모 객체로 이벤트가 전달되지 않도록 메서드를 호출하여 버블링을 차단
+        $(this).css("background-color","black");
+      })
+
+      $("#wrapper").click(function(event){
+        $(this).css("background-color","blue");
+      })
+
+      //preventDefault() : 브라우저 기본 기능을 막아주는 메서드
+      $("#link").click(function(e){
+        e.preventDefault();//링크 기능을 제거
+      })
+    })
+  </script>
+</head>
+<body>
+  <div id="wrapper">
+    <div id="targetBox"></div>
+  </div>
+  <a id="link" href="https://www.naver.com">네이버 사이트로 이동</a>
+</body>
+</html>
