@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>date생성자</title>
+  <style>
+    .frame{
+      display:inline-block;
+      padding:8px;
+      border-radius: 8px;
+      background-color:black;
+    }
+    .clock{
+      color:#fff;
+      font-family: "Roboto", sans-serif;
+      text-align: center;
+      box-sizing: border-box;
+    }
+    .large_text{
+      font-size:75px;
+    }
+    .small_text{
+      font-size:20px;
+    }
+    .colon{
+      font-size:55px;
+      vertical-align: text-bottom;
+      /*콜론이 1초에 한번씩 깜빡이는 애니메이션 효과*/
+      animation: blink 1s step-start infinite;
+    }
+    @keyframes blink {
+      50%{
+        opacity:0;
+      }
+    }
+  </style>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    $(function(){
+      function watchClock() {
+        //숫자가 한 자리일때 앞에 0을 붙이는 함수
+        function leftPad(num){
+          //삼항 연산자 = 조건식 ? 실행문1 : 실행문2
+          //num값이 한자리 숫자면 num앞에 0을 붙여서 반환하고 두자리숫자면 그냥 num값을 반환
+          return num < 10 ? `0${num}` : num
+        }
+
+        //오늘의 요일정보를 글자로 변경하는 함수
+        function getDayText(index){
+          const days = ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"]
+          return days[index]; //순번이 index인 배열요소를 반환(index가 0이면 "일요일"을 반환)
+        }
+
+        //날짜 정보를 present에 저장
+        const present = new Date();
+        //현재 시간을 leftPad함수의 인자로 전달하고 그 반환값을 hour, minute, seconds에 저장
+        const hour = leftPad(present.getHours());
+        const minute = leftPad(present.getMinutes());
+        const seconds = leftPad(present.getSeconds());
+        //console.log(hour, minute, seconds)
+        //hour값을 #hour의 text로 설정합니다.
+        $("#hours").text(hour)
+        //minute값을 #minute의 text로 설정합니다.
+        $("#minute").text(minute)
+        //seconds값을 #seconds의 text로 설정합니다.
+        $("#seconds").text(seconds)
+
+        //현재 연도를 변수에 할당
+        const year = present.getFullYear();
+        // 월은 0부터 카운트되기 때문에 +1을 해줘야 합니다
+        const month = leftPad(present.getMonth()+1);
+        const date = leftPad(present.getDate())
+        const day = getDayText(present.getDay());
+
+        //출력
+        $("#year").text(year)
+        $("#month").text(month)
+        $("#date").text(date)
+        $("#day").text(day)
+      }
+
+      watchClock(); //최초 실행
+      setInterval(watchClock, 1000);//1초마다 갱신
+    })
+  </script>
+</head>
+<body>
+  <div class="frame">
+    <div class="clock">
+      <div class="time_box">
+        <span id="hours" class="large_text"></span>
+        <span class="colon">:</span>
+        <span id="minute" class="large_text"></span>
+        <span id="seconds" class="small_text"></span>
+      </div><!--time_box END-->
+      <div class="date_box">
+        <span id="year"></span>
+        <span>.</span>
+        <span id="month"></span>
+        <span>.</span>
+        <span id="date"></span>
+        <span id="day"></span>
+      </div>
+    </div><!--clock END-->
+  </div><!--frame END-->
+</body>
+</html>
