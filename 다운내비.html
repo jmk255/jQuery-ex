@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>다운 내비게이션</title>
+  <style>
+    *{margin:0; padding:0;}
+    ul, li{list-style:none;}
+    a{text-decoration: none; color:inherit;}
+
+    nav{
+      color:#333;
+      width:600px;
+      margin:auto;
+      margin-top:20px;
+    }
+    nav .gnb{
+      width:100%;
+      display:flex;
+    }
+    .gnb > li{
+      position:relative;
+    }
+    .gnb > li > a{
+      display:block;
+      width:200px;
+      text-align: center;
+      padding:5px 0;
+      background-color:gold;
+      transition: .5s;
+    }
+  </style>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+<body>
+  <nav>
+    <ul class="gnb">
+      <li><a href="#">HOME</a></li>
+      <li>
+        <a href="#">PROFILE</a>
+        <ul class="sub">
+          <li><a href="#">intro</a></li>
+          <li><a href="#">specialty</a></li>
+          <li><a href="#">skills</a></li>
+          <li><a href="#">interest</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">PORTFOLIO</a>
+        <ul class="sub">
+          <li><a href="#">artwork</a></li>
+          <li><a href="#">illustration</a></li>
+          <li><a href="#">web</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>애니메이션효과</title>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    $(function(){
+      //.hide(duration, callback)
+      //width, height,opacity의 값을 매개변수 duration에서 설정한 시간동안 점차적으로 0으로 만들고 0이되면 display속성을 none으로 설정하여 화면에서 보이지 않는 애니메이션을 만듭니다.
+      $("#hide").click(function(){
+        $("img").hide(1000)
+      })
+
+      //show(duration, callback)
+      //display속성을 block으로 설정해주고, width,height,opacity속성으로 점차적으로 애니메이션되어 화면에 보여지게 만듭니다
+      $("#show").click(function(){
+        $("img").show("slow");
+      })
+      
+      //.toggle(duration, callback)
+      //요소의 display값이 none일때 show메서드의 기능을 그 외엔 hide메서드의 기능을 합니다
+      $("#toggle").click(function(){
+        $("img").toggle("slow");
+      })
+      
+      //fadeOut(duration,callback)
+      //요소의 opacity값을 현재의 값에서 점차적으로 0으로 만듭니다 (display:none)
+      $("#fadeOut").click(function(){
+        $("img").fadeOut(1000);
+      })
+
+      //fadeIn(duration,callback)
+      //요소의 opacity값을 현재의 값에서 점차적으로 1으로 만듭니다 (display:block)
+      $("#fadeIn").click(function(){
+        $("img").fadeIn(1000);
+      })
+
+      //fadeToggle(duration,callback)
+      //요소의 display값이 none일때 fadeIn기능을 그 외엔 fadeOut기능을 합니다.
+      $("#fadeToggle").click(function(){
+        $("img").fadeToggle(1000);
+      })
+
+      //fadeTo(duration, opacity, callback)
+      //요소를 매개변수 opacity에 설정한 값으로 점차적으로 변경(display속성을 변경하지 않는다)
+      $(".btn").click(function(){
+        //클릭한 버튼요소의 title속성값을 변수에 할당
+        let opacity = $(this).attr("title")
+        //opacity값으로 이미지의 투명도를 점차적으로 변경
+        $(".fadeTo").fadeTo("fast", opacity)
+      })
+
+      //slideDown(duration, callback)
+      //높이값을 0부터 원래 가지고 있던 높이까지 늘리면서 펼쳐주는 효과
+      $(".slideDown").click(function(){
+        $(".slide").slideDown(1000)
+      })
+      //slideUp(duration, callback)
+      //현재 높이 값에서 0까지 줄어들어 접는 효과
+      $(".slideUp").click(function(){
+        $(".slide").slideUp(1000)
+      })
+      //slideToggle(duration, callback)
+      //요소의 display값이 none일때 slideDown기능을 그 외엔 slideUp기능을 합니다.
+      $(".slideToggle").click(function(){
+        $(".slide").slideToggle(1000)
+      })
+    })
+  </script>
+</head>
+<body>
+  <img src="images/sample1.jpg" width="300"><br>
+  <button id="hide">hide()</button>
+  <button id="show">show()</button>
+  <button id="toggle">toggle()</button>
+  <hr>
+
+  <img src="images/sample2.jpg" width="300"><br>
+  <button id="fadeOut">fadeOut()</button>
+  <button id="fadeIn">fadeIn()</button>
+  <button id="fadeToggle">fadeToggle()</button>
+  <hr>
+
+  <img class="fadeTo" src="images/sample3.jpg" width="300"><br>
+  <button class="btn" title="0">0</button>
+  <button class="btn" title="0.3">0.3</button>
+  <button class="btn" title="0.6">0.6</button>
+  <button class="btn" title="1">1</button>
+
+  <hr>
+  <img class="slide" src="images/sample1.jpg" width="300"><br>
+  <button class="slideUp">slideUp</button>
+  <button class="slideDown">slideDown</button>
+  <button class="slideToggle">slideToggle</button>
+</body>
+</html>
