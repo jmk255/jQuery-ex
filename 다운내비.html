@@ -28,11 +28,48 @@
       text-align: center;
       padding:5px 0;
       background-color:gold;
-      transition: .5s;
+      transition: .3s;
+    }
+    .gnb > li > a:hover{
+      background-color:burlywood;
+      color:#fff;
+    }
+    .sub{
+      position:absolute;
+      width:100%;
+      text-align: center;
+      display:none;
+    }
+    .sub a{
+      display:block;
+      padding:5px 0;
+      background-color:bisque;
+      color:#333;
+      transition:0.3s;
+    }
+    .sub a:hover{
+      background-color:darkseagreen;
+      color:#fff;
     }
   </style>
   <!--jqeury라이브러리-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <script>
+    $(function(){
+      //모든 메뉴에 마우스를 올렸을때 실행
+      $(".gnb > li").on("mouseenter",function(){
+        //이벤트가 발생된 li요소의 자식인 .sub메뉴를 펼쳐줍니다
+        //stop = 대기열에 쌓인 애니메이션기능을 제거
+        $(this).children(".sub").stop().slideDown(500);
+      })
+      //메뉴에서 마우스가 떠났을때 실행
+      $(".gnb > li").on("mouseleave",function(){
+        //이벤트가 발생된 li요소의 자식인 .sub메뉴를 접어줍니다
+        $(this).children(".sub").stop().slideUp(500);
+      })
+    })
+  </script>
 </head>
 <body>
   <nav>

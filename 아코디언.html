@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>아코디언</title>
+  <style>
+    *{margin:0; padding:0;}
+    ul, li{list-style: none;}
+    a{text-decoration: none; color:inherit;}
+
+    #accordion{
+      width:200px;
+      text-indent: 10px;
+    }
+    .group{
+      margin-bottom:3px;
+    }
+    .title{
+      height:35px;
+      line-height:35px;
+      background-color:pink;
+      cursor:pointer;
+    }
+    .sub a{
+      display:block;
+      height:35px;
+      line-height:35px;
+      background-color:#fdf5dd;
+    }
+    .sub a:hover{background-color:orange;}
+  </style>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <script>
+    $(function(){
+      $(".sub").hide(); //모든 서브메뉴들을 감춥니다
+
+      $(".title").click(function(){
+        //show, hide메서드로 구현
+        //$(".sub").hide();
+        //클릭한 .title요소의 다음 형제 요소인 .sub를 화면에 표시
+        //$(this).next().show();
+
+        //슬라이딩 효과
+        //클릭한 메뉴의 다음 요소인 .sub가 접혀있을때만 slideUp메서드를 적용
+        if($(this).next().css("display") === "none"){
+          $(".sub").slideUp();
+        }
+        $(this).next().slideToggle();
+      })
+    })
+  </script>
+</head>
+<body>
+  <ul id="accordion">
+    <li class="group">
+      <div class="title">Title 1</div>
+      <ul class="sub">
+        <li><a href="#">sub1</a></li>
+        <li><a href="#">sub1</a></li>
+        <li><a href="#">sub1</a></li>
+      </ul>
+    </li>
+    <li class="group">
+      <div class="title">Title 2</div>
+      <ul class="sub">
+        <li><a href="#">sub2</a></li>
+        <li><a href="#">sub2</a></li>
+        <li><a href="#">sub2</a></li>
+        <li><a href="#">sub2</a></li>
+      </ul>
+    </li>
+    <li class="group">
+      <div class="title">Title 3</div>
+      <ul class="sub">
+        <li><a href="#">sub3</a></li>
+        <li><a href="#">sub3</a></li>
+      </ul>
+    </li>
+  </ul>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>다운메뉴 연습</title>
+  <!--jquery UI CSS-->
+  <link href="js/jquery-ui.min.css" rel="stylesheet">
+  <style>  
+    *{margin:0; padding:0;}
+    a{text-decoration: none; color:inherit;}
+    ul, li{list-style: none;}
+    .clear::after{
+      content:"";
+      display:block;
+      clear:both;
+    }
+
+    nav{
+      width:100%;
+      min-width:1080px;
+      background-color:orange;
+      color:#fff;
+    }
+    nav > .wrap{
+      width:1080px;
+      margin:auto;
+    }
+    nav .logo{/*로고 왼쪽정렬*/
+      float:left;
+      font-size:24px;
+      line-height:40px;
+    }
+    nav .gnb{/*내비게이션은 오른쪽 정렬*/
+      float:right;
+    }
+    .gnb > li{
+      float:left;
+      line-height:40px;
+      position:relative;/*pos:abs적용한 자식요소의 기준이 됨*/
+      margin-right:60px;
+      text-indent: 10px;
+    }
+    .sub{
+      position:absolute;
+      width:150px;
+      display:none;/*서브메뉴를 제거*/
+    }
+    .sub a{
+      display:block;
+      width:100%;
+      font-size:14px;
+      background-color:#999;
+      color:#fff;
+    }
+
+    /*hover 효과*/
+    .gnb > li:hover{color:teal;}
+    .sub a:hover{
+      background-color:peachpuff;
+      color:tomato;
+    }
+    /*주메뉴 아이템에 마우스를 올리면 그 자손인 서브메뉴를 화면에 표시*/
+    /* .gnb > li:hover > .sub{
+      display:block;
+    } */
+  </style>
+
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <!--jquery UI-->
+  <script src="js/jquery-ui.min.js"></script>
+  <script>
+    $(function(){
+      $(".gnb > li").on("mouseenter",function(){
+        $(this).children(".sub").stop().slideDown(500,"easeOutBounce");
+      })
+
+      $(".gnb > li").on("mouseleave",function(){
+        $(this).children(".sub").stop().slideUp(500,"easeOutBounce");
+      })
+    })
+  </script>
+</head>
+<body>
+  <nav>
+    <div class="wrap clear">
+      <h1 class="logo">
+        <a href="#">LOGO</a>
+      </h1>
+      <ul class="gnb">
+        <li><!--주메뉴 아이템-->
+          <a href="#">ABOUT</a>
+          <ul class="sub"><!--서브메뉴-->
+            <li><a href="#">My name</a></li>
+            <li><a href="#">Birth day</a></li>
+            <li><a href="#">Education</a></li>
+          </ul>
+        </li>
+        <li><!--주메뉴 아이템-->
+          <a href="#">NEWS</a>
+          <ul class="sub"><!--서브메뉴-->
+            <li><a href="#">Today News</a></li>
+            <li><a href="#">Social</a></li>
+            <li><a href="#">Infomation</a></li>
+          </ul>
+        </li>
+        <li><!--주메뉴 아이템-->
+          <a href="#">PORTFOLIO</a>
+          <ul class="sub"><!--서브메뉴-->
+            <li><a href="#">Web Design</a></li>
+            <li><a href="#">Web Development</a></li>
+            <li><a href="#">Printout</a></li>
+            <li><a href="#">My Photo</a></li>
+            <li><a href="#">Illustration</a></li>
+          </ul>
+        </li>
+        <li><!--주메뉴 아이템-->
+          <a href="#">BOARD</a>
+          <ul class="sub"><!--서브메뉴-->
+            <li><a href="#">Notice</a></li>
+            <li><a href="#">Free Board</a></li>
+            <li><a href="#">Contact Me</a></li>
+          </ul>
+        </li>
+        <li><!--주메뉴 아이템-->
+          <a href="#">ALBUM</a>
+          <ul class="sub"><!--서브메뉴-->
+            <li><a href="#">Our Family</a></li>
+            <li><a href="#">My Friends</a></li>
+          </ul>
+        </li>
+        <li><!--주메뉴 아이템-->
+          <a href="#">CONTACT</a>
+          <ul class="sub"><!--서브메뉴-->
+            <li><a href="#">Location</a></li>
+            <li><a href="#">E-mail</a></li>
+            <li><a href="#">Mobile Phone</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</body>
+</html>

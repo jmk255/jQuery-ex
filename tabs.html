@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabs</title>
+  <style>
+    *{margin:0; padding:0;}
+    ul{list-style:none;}
+    a{text-decoration: none; color:inherit;}
+
+    .tab_wrap{
+      width:800px;
+      margin:50px auto;
+    }
+    .tab_wrap .tab_menu{
+      display:flex;
+      gap:2px;
+    }
+    .tab_menu li{
+      width:20%;
+      text-align: center;
+    }
+    .tab_menu li a{
+      display:block;
+      padding:10px 0;
+      background:#aa7575;
+      color:#fff;
+    }
+    .tab_menu li.active a{
+      background-color:#df2e2e;
+      color:#f3e40c;
+    }
+
+    #tab_content{
+      border:1px solid #ddd;
+      padding:20px;
+      height:160px;
+      box-sizing: border-box;
+    }
+    #tab_content > div{
+      display:none;
+    }
+    #tab_content > div:first-child{
+      display:block;
+    }
+    #tab_content h2{
+      margin-bottom:10px;
+    }
+    #tab_content p{
+      color:#05149e;
+    }
+  </style>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    $(function(){
+      //탭메뉴에 클릭이벤트 생성
+      $(".tab_menu li").click(function(e){
+        e.preventDefault();//링크 기능 제거
+        //모든 a요소의 active클래스를 제거
+        $(".tab_menu li").removeClass("active")
+        //클릭한 a요소에 active클래스를 추가
+        $(this).addClass("active")
+
+        //클릭한 버튼의 순번을 구해줍니다.
+        let i = $(this).index();
+        console.log(i)
+        //모든 컨텐츠를 제거하고 순번이 i번째인 요소만 화면에 보여지게 만들어 줍니다
+        $("#tab_content > div").hide().eq(i).show();
+      })
+    })
+  </script>
+</head>
+<body>
+  <div class="tab_wrap">
+    <ul class="tab_menu">
+      <li class="active"><a href="#">menu 1</a></li>
+      <li><a href="#">menu 2</a></li>
+      <li><a href="#">menu 3</a></li>
+    </ul>
+    <div id="tab_content">
+      <div id="tabs1">
+        <h2>menu1</h2>
+        <p>01. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius totam ratione dicta id odio harum sint, neque minus iure a ipsum debitis, illum laborum eligendi eum aliquam minima ipsam vero?</p>
+      </div>
+      <div id="tabs2">
+        <h2>menu2</h2>
+        <p>02. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius totam ratione dicta id odio harum sint, neque minus iure a ipsum debitis, illum laborum eligendi eum aliquam minima ipsam vero?</p>
+      </div>
+      <div id="tabs3">
+        <h2>menu3</h2>
+        <p>03. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius totam ratione dicta id odio harum sint, neque minus iure a ipsum debitis, illum laborum eligendi eum aliquam minima ipsam vero?</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
