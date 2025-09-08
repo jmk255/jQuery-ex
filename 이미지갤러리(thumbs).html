@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이미지 갤러리</title>
+  <style>
+    *{margin:0; padding:0;}
+    ul, li{list-style: none;}
+    a{text-decoration: none;}
+
+    body{
+      background-color:#333;
+    }
+    #wrap{
+      width:640px;
+      margin:50px auto;
+    }
+    #nav{
+      width:100%;
+      display:flex;
+      justify-content: center;
+      gap:6px;
+      margin-bottom:10px;
+    }
+    #nav li a{
+      display:block;
+      border:2px solid #bbb;
+      border-radius: 5px;
+    }
+    #nav li a img{
+      width:70px;
+      display:block;
+      opacity:0.6;
+    }
+    #nav li a.active{
+      border-color:#fff;
+    }
+    #nav li a.active img{
+      opacity:1;
+    }
+  </style>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    $(function(){
+      //선택된 이미지의 순번을 저장할 변수
+      let i = 0;
+
+      //a요소에 클릭이벤트 생성, 함수의 인자로 이벤트객체 전달
+      $("#nav li a").click(function(e){
+        e.preventDefault();//a요소의 링크 기능을 제거
+        //변수 now에 클릭한 링크의 부모인 li요소의 순번을 할당
+        let now = $(this).parent().index();
+        //선택되었던 이미지의 순번과 현재 클릭한 이미지의 순번이 같으면 함수를 종료시킴
+        if(i == now) return false
+
+        //다음 비교용으로 변수 i에 현재 클릭한 썸네일의 순번을 저장
+        i = now;
+
+        //클릭한 링크의 href 속성값을 변수에 할당
+        let imgUrl = $(this).attr("href");
+        console.log(imgUrl);
+
+        //#window 이미지의 src속성 변경(애니메이션 효과 적용)
+        $("#window img").stop().animate({"opacity":0},300,function(){
+          //opacity가 0.3초동안 0으로 변경된 후 실행되는 함수
+          //이미지의 경로를 imgUrl로 변경한 후에 opacity를 1로 0.3초동안 변경
+          $(this).attr("src", imgUrl).animate({"opacity":1},300)
+        })
+        
+
+        //모든 링크에 active클래스를 제거
+        $("#nav li a").removeClass("active")
+        //클릭된 링크에 active클래스를 추가
+        $(this).addClass("active")
+      })
+    })
+  </script>
+</head>
+<body>
+  <div id="wrap">
+    <ul id="nav">
+      <li><a href="img/lop0.jpg" class="active">
+        <img src="img/thumb0.jpg" alt="그림0">
+      </a></li>
+      <li><a href="img/lop1.jpg">
+        <img src="img/thumb1.jpg" alt="그림1">
+      </a></li>
+      <li><a href="img/lop2.jpg">
+        <img src="img/thumb2.jpg" alt="그림2">
+      </a></li>
+      <li><a href="img/lop3.jpg">
+        <img src="img/thumb3.jpg" alt="그림3">
+      </a></li>
+      <li><a href="img/lop4.jpg">
+        <img src="img/thumb4.jpg" alt="그림4">
+      </a></li>
+      <li><a href="img/lop5.jpg">
+        <img src="img/thumb5.jpg" alt="그림5">
+      </a></li>
+      <li><a href="img/lop6.jpg">
+        <img src="img/thumb6.jpg" alt="그림6">
+      </a></li>
+      <li><a href="img/lop7.jpg">
+        <img src="img/thumb7.jpg" alt="그림7">
+      </a></li>
+    </ul>
+    <div id="window"><img src="img/lop0.jpg" alt=""></div>
+  </div>
+</body>
+</html>

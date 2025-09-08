@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로딩아이콘 만들기</title>
+  <style>
+    *{margin:0; padding:0;}
+    #loading{
+      background-color:#ddd;
+      position:fixed;
+      /* top:0; left:0; right:0; bottom:0; */
+      inset:0;/*브라우저와 같은 크기로 설정*/
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 1s;/*변환효과 적용*/
+      z-index: 9999;
+    }
+    .spinner{
+      width:200px;
+    }
+
+    /*로딩이 완료되면 loaded클래스를 추가하여 로딩 이미지를 감춰줍니다*/
+    .loaded{
+      opacity:0;
+      visibility: hidden;
+    }
+
+    /*콘텐츠 부분*/
+    .gallery{
+      width:100%;
+      display:flex;
+      flex-wrap:wrap;
+    }
+    .gallery .item{
+      width:50%;
+      padding:5px;
+      box-sizing: border-box;
+    }
+    .gallery img{
+      display:block;
+      width:100%;
+      height:300px;
+      object-fit: cover;
+    }
+  </style>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    $(function(){
+      //모든 리소스 불러오기가 완료되면
+      $(window).on("load",function(){
+        //#loading에 loaded클래스를 추가하여 로딩아이콘 감추기
+        $("#loading").addClass("loaded");
+      })
+    })
+  </script>
+</head>
+<body>
+  <!--로딩 이미지-->
+  <div id="loading">
+    <img class="spinner" src="images/loading.png" alt="">
+  </div>
+  <!--컨텐츠-->
+  <div class="gallery">
+    <div class="item"><img src="images/img1.jpg" alt=""></div>
+    <div class="item"><img src="images/img2.jpg" alt=""></div>
+    <div class="item"><img src="images/img3.jpg" alt=""></div>
+    <div class="item"><img src="images/img4.jpg" alt=""></div>
+    <div class="item"><img src="images/img5.jpg" alt=""></div>
+    <div class="item"><img src="images/img6.jpg" alt=""></div>
+    <div class="item"><img src="images/img7.jpg" alt=""></div>
+    <div class="item"><img src="images/img8.jpg" alt=""></div>
+    <div class="item"><img src="images/img9.jpg" alt=""></div>
+    <div class="item"><img src="images/img10.jpg" alt=""></div>
+    <div class="item"><img src="images/img11.jpg" alt=""></div>
+    <div class="item"><img src="images/img12.jpg" alt=""></div>
+  </div>
+</body>
+</html>
