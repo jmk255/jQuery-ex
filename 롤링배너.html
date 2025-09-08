@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>롤링배너 만들기</title>
+  <style>
+    *{margin:0; padding:0;}
+    #wrapper ul{
+      list-style:none;
+      width:280px;
+      height:390px;
+      border:2px solid black;
+      overflow:hidden;
+      margin:20px;
+      position:relative;
+    }
+    #wrapper ul li{
+      width:280px;
+      height:390px;
+      position:absolute;
+      top:100%;
+    }
+  </style>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    $(function(){
+      let current = 0;//이미지의 순번을 저장할 전역변수
+      const $banner = $("#wrapper li");//배너에 li요소를 할당
+
+      //3초 한번씩 반복실행
+      setInterval(function(){
+        const $prev = $banner.eq(current); // li요소중 순서가 current값인 요소를 할당(초기값은 0)
+        move($prev, 0, "-100%");//move함수에 매개변수로 prev요소와 위치값을 보내줍니다
+        current++;//1증가
+        //current값이 배너의 갯수와 같아지면 current를 0으로 초기화
+        if(current == $banner.length) current = 0;
+        const $next = $banner.eq(current);//current값이 1증가되었으므로 다음요소가 선택
+        move($next, "100%", 0);//move함수에 매개변수로 next요소와 위치값을 보내줍니다
+      },3000)
+
+      function move(tg, start, end){//이미지의 이동기능을 작성할 함수
+        //tg = 이동할 이미지요소, start = 시작위치값, end = 이동할 위치값
+        tg.css("top",start) //tg의 top속성값을 start값으로 적용
+        .stop() // animate효과의 대기열이 생기는 것을 막아주기 위한 메서드
+        .animate({"top":end}, 500); //0.5초동안 top속성이 end값의 위치로 이동
+      }
+    })
+  </script>
+</head>
+<body>
+  <div id="wrapper">
+    <ul>
+      <li class="img1" style="top:0;">
+        <img src="img/1.jpg" alt="1">
+      </li>
+      <li class="img2"><img src="img/2.jpg" alt="2"></li>
+      <li class="img3"><img src="img/3.jpg" alt="3"></li>
+    </ul>
+  </div>
+</body>
+</html>

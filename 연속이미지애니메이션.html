@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연속이미지 애니메이션</title>
+  <style>
+    div{
+      width:320px;
+      height:240px;
+      position:relative;
+      background:url(img/bg.jpg);
+    }
+    div img{
+      position:absolute;
+      display:none;
+    }
+  </style>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    $(function(){
+      for(let i = 0; i < 21; i++){ //i가 0에서 20이 될때 까지 반복
+        //append함수로 총 21개의 이미지를 div요소안에 추가
+        $("div").append("<img src='img/seq/seq"+i+".png'>")
+      }
+
+      $("div img").first().show();//첫번째 이미지 요소만 보이게 설정
+      let count = 0; //count변수는 setInterval에서 주기적으로 함수를 호출할때 img의 위치가 저장됨
+      let timer; //setInterval함수를 담을 변수
+      //div요소에 hover메서드 적용
+      $("div").hover(function(){ //mouseover시 실행
+        if(timer){//timer변수에 setInterval메서드가 할당되어있으면 timer변수에 있는 setInterval함수를 종료시킴
+          clearInterval(timer)
+        }
+        //0.05초마다 nextFrame함수를 호출
+        timer = setInterval(nextFrame,50);
+      },function(){ //mouseout시 실행
+        if(timer){//timer변수에 setInterval메서드가 할당되어있으면 timer변수에 있는 setInterval함수를 종료시킴
+          clearInterval(timer)
+        }
+        //0.05초마다 prevFrame함수를 호출
+        timer = setInterval(prevFrame,50);
+      })
+
+      //nextFrame함수 생성
+      function nextFrame(){
+        count++; //count값을 1증가 시킴
+        //count가 20 이상이 되면 setInterval을 종료해야 합니다.
+        if(count > 20){
+          count = 20; //count값을 20으로 고정
+          clearInterval(timer)//timer변수에 할당된 setInterval을 종료
+        }
+        //img:visible = display가 none이 아닌 이미지요소를 선택하여 hide메서드로 display값을 none으로 바꿔줍니다
+        $("div img:visible").hide();
+        //count값에 해당하는 순번의 이미지요소를 화면에 표시
+        $("div img").eq(count).show();
+      }
+
+      //prevFrame함수 생성
+      function prevFrame(){
+        count--; //count값을 1감소 시킴
+        if(count < 0){ //count값이 0보다 작아지면 0으로 고정, 반복함수를 종료
+          count = 0;
+          clearInterval(timer)
+        }
+        $("div img:visible").hide();//현재 보이는 이미지를 가려줍니다
+        $("div img").eq(count).show();//count값에 해당하는 순번의 이미지요소를 화면에 표시
+      }
+    })
+  </script>
+</head>
+<body>
+  <div></div>
+</body>
+</html>

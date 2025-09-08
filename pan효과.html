@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pan효과</title>
+  <style>
+    *{margin:0; padding:0;}
+    body{
+      background:#033;
+    }
+    div{
+      width:800px;
+      height:300px;
+      border:1px solid #999;
+      overflow:hidden;
+      margin:10px auto;
+    }
+    img{position:relative;}
+  </style>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    $(function(){
+      //이미지의 크기를 변수에 할당
+      const $imgw = $("img").width();
+      const $imgh = $("img").height();
+      // console.log($imgw, $imgh)
+
+      function start(){//이미지를 이동하기 위한 함수
+        //x축과 y축으로 이동할 수 있는 거리값을 변수에 할당
+        // 0 ~ (800 - $imgw) 사이의 수를 구해서 변수 posx에 할당
+        let posx = Math.ceil(Math.random()*(800 - $imgw))
+        // 0 ~ (300 - $imgh) 사이의 수를 구해서 변수 posy에 할당
+        let posy = Math.ceil(Math.random()*(300 - $imgh))
+        console.log(posx, posy)
+        //지연시간을 2초 ~ 7초사이로 랜덤으로 설정
+        let delayTime = Math.ceil(Math.random()*5000+2000)
+        //img의 left속성값과 top속성값을 posx와 posy값으로 할당 -> 2초동안 해당위치로 이동합니다
+        //delayTime변수에 저장한 시간만큼 지연시킴
+        //animate의 콜백함수(애니메이션 효과가 종료된 후에 실행되는 함수)로 start함수를 다시 호출하여 이미지를 다시 이동시킴
+        $("img").delay(delayTime).animate({"left":posx, "top":posy},2000,start)
+      }
+
+      start();//start함수 호출
+    })
+  </script>
+</head>
+<body>
+  <div>
+    <img src="img/bg_pan.jpg" alt="">
+  </div>
+</body>
+</html>
