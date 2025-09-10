@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>팝업이미지</title>
+  <style>
+    .myImg{
+      width:200px;
+      height:100px;
+      object-fit: cover;
+      border-radius: 5px;
+      cursor:pointer;
+      margin-top:20px;
+    }
+    .myImg:hover{opacity:0.7;}
+
+    .modal{
+      position:fixed;
+      z-index: 999;
+      inset:0;/*브라우저와 같은 크기로 설정*/
+      background-color:rgba(0,0,0,0.9);
+      padding-top:100px;
+      overflow:auto;/*스크롤 사용*/
+      display:none;
+    }
+    .modal-content{
+      display:block;
+      margin:auto;
+      width:80%;
+      max-width:700px;
+    }
+    .caption{
+      width:80%;
+      margin:auto;
+      max-width:700px;
+      text-align: center;
+      color:#ccc;
+      padding-top:10px;
+    }
+    .close{
+      position:absolute;
+      right:35px;
+      top:15px;
+      color:#f1f1f1;
+      font-size:40px;
+      font-weight: bold;
+      transition: .3s;
+      cursor:pointer;
+    }
+    .close:hover{
+      color:#bbb;
+    }
+    
+    /*애니메이션 효과*/
+    .modal-content, 
+    .caption{
+      animation:zoom .6s;
+    }
+
+    @keyframes zoom {
+      0%{transform:scale(0);}
+      100%{transform:scale(1);}
+    }
+    
+    @media screen and (max-width:700px){
+      .modal-content{width:100%;}
+    }
+
+
+  </style>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    $(function(){
+      //썸네일 이미지에 클릭이벤트 생성
+      $(".myImg").click(function(){
+        //클릭한 img요소의 data-src속성값을 src변수에 할당
+        let src  = $(this).attr("data-src")
+        //모달 이미지의 src속성값으로 src변수값을 할당
+        $(".modal-content").attr("src", src)
+
+        //클릭한 썸네일이미지의 alt속성값을 caption의 text로 적용
+        let alt = $(this).attr("alt");
+        $(".caption").text(alt)
+
+        //모달 팝업을 화면에 표시
+        $(".modal").show();
+      })
+
+      //close버튼에 클릭이벤트 생성
+      $(".close").click(function(){
+        //모달을 화면에서
+        $(".modal").hide();
+      })
+    })
+  </script>
+</head>
+<body>
+  <h2>Image Modal</h2>
+  <div>
+    <!--
+      data-src = 임의의 속성
+    -->
+    <img class="myImg" src="img/thumb0.jpg" alt="팝업 이미지1" data-src="img/lop0.jpg">
+    <img class="myImg" src="img/thumb1.jpg" alt="팝업 이미지2" data-src="img/lop1.jpg">
+    <img class="myImg" src="img/thumb2.jpg" alt="팝업 이미지3" data-src="img/lop2.jpg">
+  </div>
+
+  <!--Modal-->
+  <div class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content">
+    <p class="caption"></p>
+  </div>
+</body>
+</html>
