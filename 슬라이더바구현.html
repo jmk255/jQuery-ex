@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>슬라이더 바 구현</title>
+  <!--jQuery UI CSS-->
+  <link href="js/jquery-ui.min.css" rel="stylesheet">
+  <style>
+    *{margin:0; padding:0;}
+    #wrap{
+      width:600px;
+      overflow:hidden;
+      background:#cf0;
+    }
+    #content{
+      height:300px;
+      position:relative;
+    }
+    #scrollBar{
+      width:600px;
+      height:30px;
+      background:#06c;
+    }
+    #bar{
+      width:30px;
+      height:30px;
+      background:#ff0;
+      cursor:pointer;
+    }
+  </style>
+
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <!--jQUery UI JS-->
+  <script src="js/jquery-ui.min.js"></script>
+
+  <script>
+    $(function(){
+      $("#bar").draggable({
+        axis : "x",//x축으로만 드래그되도록 제한
+        containment : "parent"//부모영역 안에서만 이동 가능
+      })
+      //컨텐츠가 움직일 수 있는 최소,최대 범위를 변수에 할당
+      let min = 0;
+      let max = -400;
+      //#bar에 드래그 이벤트 발생시
+      $("#bar").on("drag",function(){
+        //#bar의 left위치를 구한다
+        let barLeft = $("#bar").css("left");
+        //#bar의 left위치값을 연산을 위해 숫자로 변환
+        barLeft = parseInt(barLeft);
+        //#barLEft위치를 사용하여 #content의 left위치를 구하는 공식
+        //570 = bar가 움직일수 있는 최대값
+        let pos = (barLeft*(max-min))/570+min
+        //(barLeft / 570) * max
+        //#content의 left값을 pos값으로 설정하면 콘텐츠가 해당 범위에서 이동하게 된다
+        $("#content").css("left",pos)
+      })
+    })
+  </script>
+</head>
+<body>
+  <div id="wrap">
+    <div id="content">
+      <img src="img/sliderbar_bg.jpg" alt="">  
+    </div>
+    <div id="scrollBar">
+      <div id="bar"></div>
+    </div>
+  </div>
+</body>
+</html>

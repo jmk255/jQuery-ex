@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>drag and drop</title>
+  <!--jQuery UI CSS-->
+  <link href="js/jquery-ui.min.css" rel="stylesheet">
+  <style>
+    .draggable{
+      float:left;
+      width:160px;
+      height:160px;
+      padding:10px 0 0 20px;
+      background:url(img/post.png) no-repeat;
+    }
+    div.invert{
+      background-image:url(img/post2.png);
+    }
+  </style>
+
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <!--jQUery UI JS-->
+  <script src="js/jquery-ui.min.js"></script>
+
+  <script>
+    $(function(){
+      $(".draggable").draggable({
+        cursor:"move", //커서 모양 변경
+        stack:".draggable", //드래그 대상이 되는 요소들끼리 자동으로 깊이를 설정해 줍니다(드래그되는 요소가 제일 위로 올라갑니다)
+        opacity:0.7,
+      })
+      //이벤트 : dargstart(드래그시작), dragstop(드래그종료), drag(드래그 중일때)
+      $(".draggable").on("dragstart", function(event,ui){
+        //드래그가 시작되면 해당요소에 invert클래스 추가
+        $(this).addClass("invert");
+      })
+      $(".draggable").on("dragstop", function(event,ui){
+        //드래그가 시작되면 해당요소에 invert클래스 추가
+        $(this).removeClass("invert");
+      })
+    })
+  </script>
+</head>
+<body>
+  <div class="draggable">
+    <p>title</p>
+  </div>
+  <div class="draggable">
+    <p>Lorem ipsum dolor<br>
+    amet consectetur adipisicing elit.</p>
+  </div>
+  <div class="draggable">
+    <p>Lorem ipsum dolor sit</p>
+  </div>
+  <div class="draggable">
+    <p>Lorem ipsum</p>
+    <img src="img/effect1.jpg" width="130" height="80">
+  </div>
+
+</body>
+</html>

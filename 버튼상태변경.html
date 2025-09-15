@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>버튼 상태 변경</title>
+  <style>
+    body{
+      text-align: center;
+      padding:2rem;
+    }
+    label{
+      display:block;
+      margin-bottom:2rem;
+    }
+    #btn{
+      background:#0bd;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+    }
+    /*비활성화된 버튼요소의 스타일 정의*/
+    #btn:disabled{
+      background:#ccc;
+    }
+  </style>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    $(function(){
+      //버튼에 disabled속성이 있으면 true 없으면 false
+      console.log($("#btn").prop("disabled"))
+      console.log($("#check").prop("checked"))
+
+      //체크 박스의 상태가 변경 됬을때 실행
+      $("#check").on("change", function(){
+        //체크박스를 체크하면
+        if($("#check").prop("checked")){
+          //버튼을 활성화 시킨다
+          $("#btn").removeAttr("disabled")
+        }else{
+          $("#btn").attr("disabled","disabled")
+        }
+      })
+    })
+  </script>
+</head>
+<body>
+  <label><input id="check" type="checkbox"> 이용 약관에 동의</label>
+  <!--disabled = input요소를 비활성화 시켜줍니다-->
+  <input id="btn" type="submit" value="전송" disabled>
+</body>
+</html>
