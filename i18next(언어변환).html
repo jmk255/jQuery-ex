@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>언어변환</title>
+  <!--jqeury라이브러리-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <!--i18next-->
+  <script src="https://unpkg.com/i18next/dist/umd/i18next.min.js"></script>
+  <script>
+    $(function(){
+      //현재의 웹 브라우저에 설정된 언어 확인(만약 한구어라면 true, 아니라면 false)
+      const isKorean = navigator.language === "ko";
+      console.log(isKorean)
+      //웹 브라우저 언어가 한국어면 select에 한국어 선택, 아닐 경우 영어 선택
+      if(isKorean){
+        //마지막 옵션요소에 selected속성을 적용하여 선택
+        $("#lang_select option:last").attr("selected","selected")
+      }else{
+        //첫번째 옵션요소에 selected속성을 적용하여 선택
+        $("#lang_select option:first").attr("selected","selected")
+      }
+
+        //웹페이지 텍스트 변환을 위한 세팅
+      i18next.init(
+        {
+          lng: isKorean ? "ko" : "en", //언어가 한국어인지, 영어인지 표시
+          debug: true,
+          resources: { //웹페이지를 구성하는 텍스트들을 json형태로 입력
+            ko:{
+              translation: {
+                title: "한국어 제목",
+                content: "한국어 내용"
+              }
+            },
+            en:{
+              translation: {
+                title: "English title",
+                content: "English content"
+              }
+            }
+          }
+        },
+        function(err, t){
+          if(err){//에러가 발생할 경우 에러메시지를 콘솔에 출력
+            console.error(err)
+          }else{//에러가 없을 경우 설정한 언어로 json안의 텍스트들을 대입
+            updateContent();
+          }
+        }
+      );
+
+      function updateContent(){ //i18next.init에서 세팅한 텍스트들을 html 태그에 대입 
+        $("#title").text(i18next.t("title"))
+        $("#content").text(i18next.t("content"))
+      }
+
+      //언어 변환 시 이벤트(select에서 onchange = "i18next.chnageLanguage(this.value) 이벤트")
+      i18next.on("languageChanged", () => {
+        updateContent() //바뀐 언어에 따라 웹페이지 텍스트 재대입
+      })
+    })
+  </script>
+</head>
+<body>
+  <!--한국어, 영어 선택을 할 수 있는 selector-->
+  <select id="lang_select" onchange="i18next.changeLanguage(this.value)">
+    <option value="en">English</option>
+    <option value="ko">Korean</option>
+  </select>
+  <!--웹페이지 텍스트(제목 + 내용)-->
+  <h1 id="title"></h1>
+  <p id="content"></p>
+</body>
+</html>
